@@ -1,50 +1,102 @@
 /**
- * Data sampel media dari pemilik proyek. Ini hanya sampel untuk menguji
- * tampilan: judul, deskripsi, bahasa, tanggal, dan hak penggunaannya belum
- * diketahui, sehingga hanya label netral yang dipakai. Jangan menambahkan
- * judul, alt text deskriptif, atau metadata lain sebelum diverifikasi.
+ * SATU-SATUNYA tempat untuk mengganti URL video dan gambar.
+ * Teks lain di halaman tidak perlu diubah.
+ *
+ * - Video: isi `url` dengan tautan YouTube (youtu.be/ID atau youtube.com/watch?v=ID).
+ * - Gambar: isi `url` dengan tautan sumber. Agar gambar tampil sebagai pratinjau,
+ *   isi juga `imageUrl` (URL berkas gambar langsung) DAN `alt` (deskripsi akurat).
+ *   Tanpa keduanya, hanya tautan ke sumber yang ditampilkan.
+ * - `rights`: status hak penggunaan, mis. "belum diverifikasi" (bawaan) atau
+ *   "izin diperiksa pada 2026-12-01". Jangan mengisinya sebelum benar-benar diperiksa.
+ * - Judul, deskripsi, dan alt text jangan dikarang. Label otomatis: "Video N", "Gambar N".
  */
 
-export interface VideoSample {
-  /** ID video YouTube, untuk embed resmi (youtube-nocookie.com). */
+const RIGHTS_UNVERIFIED = "belum diverifikasi";
+
+interface VideoSource {
+  url: string;
+  rights?: string;
+}
+
+interface ImageSource {
+  url: string;
+  imageUrl?: string;
+  alt?: string;
+  rights?: string;
+}
+
+const VIDEO_SOURCES: readonly VideoSource[] = [
+  { url: "https://youtu.be/eNDXpkzbMhI" },
+  { url: "https://youtu.be/MB3xnW3e5Mo" },
+  { url: "https://youtu.be/uJNYDgSpRWU" },
+  { url: "https://youtu.be/uGz7TqWUru8" },
+];
+
+// Gambar milik pemilik situs (dikonfirmasi pemilik), di-hosting pada pihak ketiga.
+// Pratinjau tampil setelah `imageUrl` (berkas gambar langsung) dan `alt` diisi.
+const OWNED = "milik pemilik situs";
+
+const IMAGE_SOURCES: readonly ImageSource[] = [
+  { url: "https://imagedock.io/i/OSo9ZovK", rights: OWNED },
+  { url: "https://imagedock.io/i/6YnIpQTC", rights: OWNED },
+  { url: "https://imagedock.io/i/E9ddyYtV", rights: OWNED },
+  { url: "https://imagedock.io/i/KhRJcVf3", rights: OWNED },
+];
+
+export interface VideoItem {
+  /** ID video YouTube (11 karakter) untuk embed youtube-nocookie.com. */
   id: string;
   label: string;
-  /** URL sumber asli yang diberikan. */
   sourceUrl: string;
+  rights: string;
 }
 
-export interface ImageSample {
+export interface ImageItem {
   label: string;
-  /** URL sumber asli (kemungkinan halaman media, bukan berkas gambar langsung). */
   sourceUrl: string;
+  rights: string;
+  /** Hanya terisi bila imageUrl DAN alt diberikan. */
+  imageUrl?: string;
+  alt: string;
 }
 
-export const VIDEO_SAMPLES: readonly VideoSample[] = [
-  {
-    id: "eNDXpkzbMhI",
-    label: "Sampel video 1",
-    sourceUrl: "https://youtu.be/eNDXpkzbMhI",
-  },
-  {
-    id: "MB3xnW3e5Mo",
-    label: "Sampel video 2",
-    sourceUrl: "https://youtu.be/MB3xnW3e5Mo",
-  },
-  {
-    id: "uJNYDgSpRWU",
-    label: "Sampel video 3",
-    sourceUrl: "https://youtu.be/uJNYDgSpRWU",
-  },
-  {
-    id: "uGz7TqWUru8",
-    label: "Sampel video 4",
-    sourceUrl: "https://youtu.be/uGz7TqWUru8",
-  },
-];
+function youtubeId(url: string): string | null {
+  try {
+    const parsed = new URL(url);
+    let id: string | null = null;
+    if (parsed.hostname === "youtu.be") {
+      id = parsed.pathname.slice(1);
+    } else if (parsed.hostname.endsWith("youtube.com")) {
+      id = parsed.searchParams.get("v");
+    }
+    return id && /^[\w-]{11}$/.test(id) ? id : null;
+  } catch {
+    return null;
+  }
+}
 
-export const IMAGE_SAMPLES: readonly ImageSample[] = [
-  { label: "Sampel gambar 1", sourceUrl: "https://imagedock.io/i/OSo9ZovK" },
-  { label: "Sampel gambar 2", sourceUrl: "https://imagedock.io/i/6YnIpQTC" },
-  { label: "Sampel gambar 3", sourceUrl: "https://imagedock.io/i/E9ddyYtV" },
-  { label: "Sampel gambar 4", sourceUrl: "https://imagedock.io/i/KhRJcVf3" },
-];
+/** URL yang tidak valid dilewati, bukan menyebabkan error. */
+export const VIDEOS: readonly VideoItem[] = VIDEO_SOURCES.flatMap(
+  (source, index) => {
+    const id = youtubeId(source.url);
+    if (!id) return [];
+    return [
+      {
+        id,
+        label: `Video ${index + 1}`,
+        sourceUrl: source.url,
+        rights: source.rights ?? RIGHTS_UNVERIFIED,
+      },
+    ];
+  },
+);
+
+export const IMAGES: readonly ImageItem[] = IMAGE_SOURCES.map(
+  (source, index) => ({
+    label: `Gambar ${index + 1}`,
+    sourceUrl: source.url,
+    rights: source.rights ?? RIGHTS_UNVERIFIED,
+    imageUrl: source.imageUrl && source.alt ? source.imageUrl : undefined,
+    alt: source.alt ?? "",
+  }),
+);

@@ -6,6 +6,7 @@ interface Props {
   videoId: string;
   label: string;
   sourceUrl: string;
+  rights: string;
 }
 
 /**
@@ -14,12 +15,17 @@ interface Props {
  * autoplay, dan wadah 16:9 yang ukurannya terkunci mencegah layout shift.
  * Tautan ke sumber asli selalu tersedia bila embed tidak diizinkan.
  */
-export default function YouTubeEmbed({ videoId, label, sourceUrl }: Props) {
+export default function YouTubeEmbed({
+  videoId,
+  label,
+  sourceUrl,
+  rights,
+}: Props) {
   const [loaded, setLoaded] = useState(false);
 
   return (
     <div>
-      <div className="aspect-video w-full overflow-hidden rounded-xl border border-line bg-ink">
+      <div className="flat-shadow aspect-video w-full overflow-hidden rounded-xl border-2 border-ink bg-ink">
         {loaded ? (
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${videoId}`}
@@ -36,7 +42,7 @@ export default function YouTubeEmbed({ videoId, label, sourceUrl }: Props) {
               type="button"
               onClick={() => setLoaded(true)}
               aria-label={`Muat ${label} dari YouTube`}
-              className="inline-flex h-11 items-center justify-center rounded-full bg-brand px-6 text-sm font-bold text-paper transition-colors hover:bg-brand-dark"
+              className="flat-btn inline-flex h-11 items-center justify-center rounded-full bg-brand px-6 text-sm font-bold text-paper hover:bg-brand-dark"
             >
               Muat video dari YouTube
             </button>
@@ -47,7 +53,7 @@ export default function YouTubeEmbed({ videoId, label, sourceUrl }: Props) {
         )}
       </div>
       <p className="mt-3 text-sm text-muted">
-        Hak penggunaan: belum diverifikasi.{" "}
+        Hak penggunaan: {rights}.{" "}
         <a
           href={sourceUrl}
           target="_blank"
