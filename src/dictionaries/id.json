@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "title": "Jawara Video — Panduan Menonton Video Online yang Nyaman dan Aman",
+    "description": "Panduan singkat menonton video online: memilih sumber tepercaya, menghemat kuota, menjaga privasi, dan menghormati hak cipta.",
+    "ogAlt": "Jawara Video — panduan menonton video online",
+    "ogTagline": "Panduan menonton video online yang nyaman dan aman"
+  },
+  "common": {
+    "skip": "Lewati ke konten utama",
+    "navGuide": "Panduan",
+    "headerNavLabel": "Navigasi utama",
+    "footerNavLabel": "Navigasi footer",
+    "languageLabel": "Bahasa",
+    "privacy": "Kebijakan Privasi",
+    "terms": "Syarat dan Ketentuan",
+    "rights": "Seluruh hak dilindungi."
+  },
+  "hero": {
+    "eyebrow": "Jawara Video",
+    "title": "Panduan menonton video online dengan nyaman dan aman",
+    "subtitle": "Tips memilih sumber tepercaya, menghemat kuota, menjaga privasi, dan menghormati pembuat konten. Cukup dibaca dalam beberapa menit.",
+    "cta": "Baca panduan"
+  },
+  "sponsor": {
+    "label": "Iklan",
+    "note": "Tautan di bawah mengarah ke situs mitra iklan dan akan terbuka di tab baru.",
+    "button": "Lihat penawaran mitra (iklan)"
+  },
+  "article": {
+    "intro": "Menonton video lewat internet kini semudah membuka ponsel, tetapi pengalaman yang baik tidak datang begitu saja. Panduan singkat ini merangkum hal-hal yang perlu diperhatikan agar waktu menonton Anda lebih nyaman, hemat kuota, dan terlindungi.",
+    "sections": [
+      {
+        "title": "Pilih sumber video yang tepercaya",
+        "paragraphs": [
+          "Mulailah dari sumber yang jelas pemiliknya. Situs atau aplikasi resmi biasanya mencantumkan identitas pengelola, kebijakan privasi, dan syarat penggunaan. Jika sebuah halaman tidak memuat informasi apa pun tentang siapa yang mengelolanya, berhati-hatilah sebelum mengklik tombol atau mengunduh sesuatu.",
+          "Biasakan memeriksa alamat situs di bilah peramban. Alamat yang aneh, penuh angka, atau menyerupai nama situs terkenal sering menjadi tanda halaman yang tidak layak dipercaya."
+        ],
+        "subsections": []
+      },
+      {
+        "title": "Sesuaikan kualitas dengan koneksi internet",
+        "paragraphs": [
+          "Kualitas HD terlihat tajam, tetapi memakai data jauh lebih banyak dibanding kualitas standar. Di koneksi seluler, turunkan resolusi atau aktifkan mode hemat data agar kuota tidak cepat habis. Di jaringan Wi-Fi yang stabil, Anda bebas memilih resolusi yang lebih tinggi."
+        ],
+        "subsections": [
+          {
+            "title": "Di ponsel",
+            "text": "Gunakan Wi-Fi bila memungkinkan, aktifkan mode hemat data, dan tutup aplikasi lain yang menghabiskan bandwidth."
+          },
+          {
+            "title": "Di komputer",
+            "text": "Pastikan peramban selalu diperbarui dan matikan ekstensi yang tidak dibutuhkan agar pemutaran lebih lancar."
+          }
+        ]
+      },
+      {
+        "title": "Jaga privasi dan keamanan perangkat",
+        "paragraphs": [
+          "Jangan memasukkan kata sandi, nomor kartu, atau kode verifikasi di halaman yang hanya menawarkan video. Waspadai jendela pop-up yang meminta Anda memasang aplikasi atau pembaruan, karena itu cara yang umum dipakai untuk menyebarkan perangkat lunak berbahaya. Pasang aplikasi hanya dari toko aplikasi resmi dan perbarui sistem operasi secara rutin."
+        ],
+        "subsections": []
+      },
+      {
+        "title": "Hormati hak cipta dan pembuat konten",
+        "paragraphs": [
+          "Setiap video dibuat oleh seseorang. Menonton lewat kanal resmi membantu pembuatnya tetap berkarya, sedangkan menyebarkan ulang tanpa izin dapat melanggar hak cipta. Jika ingin membagikan sebuah video, bagikan tautan aslinya dan cantumkan sumbernya."
+        ],
+        "subsections": []
+      },
+      {
+        "title": "Bangun kebiasaan menonton yang sehat",
+        "paragraphs": [
+          "Menonton terlalu lama dapat melelahkan mata dan mengganggu tidur. Beristirahatlah sejenak setiap satu jam, atur kecerahan layar sesuai cahaya ruangan, dan hindari menonton sebelum tidur. Gunakan pengaturan kontrol orang tua bila anak ikut menonton, supaya mereka hanya melihat konten yang sesuai usia."
+        ],
+        "subsections": []
+      },
+      {
+        "title": "Tentang iklan di halaman ini",
+        "paragraphs": [
+          "Jawara Video dapat menampilkan tautan iklan dari mitra. Tautan tersebut selalu diberi label \"Iklan\", hanya terbuka bila Anda mengkliknya sendiri, dan dibuka di tab baru. Anda bebas mengabaikannya tanpa memengaruhi isi halaman ini."
+        ],
+        "subsections": []
+      }
+    ]
+  },
+  "privacy": {
+    "metaTitle": "Kebijakan Privasi — Jawara Video",
+    "metaDescription": "Kebijakan privasi Jawara Video: data yang diproses, cookie, iklan, dan tautan pihak ketiga.",
+    "title": "Kebijakan Privasi",
+    "updated": "Terakhir diperbarui: 11 November 2026",
+    "sections": [
+      {
+        "title": "Informasi yang kami kumpulkan",
+        "paragraphs": [
+          "Situs ini tidak menyediakan akun, formulir, atau kolom komentar, sehingga kami tidak meminta data pribadi Anda secara langsung.",
+          "Seperti situs pada umumnya, penyedia hosting kami (Vercel) dapat mencatat data teknis standar saat halaman diakses, misalnya alamat IP, jenis peramban, dan waktu akses, untuk keperluan keamanan dan operasional."
+        ]
+      },
+      {
+        "title": "Cookie dan analitik",
+        "paragraphs": [
+          "Saat ini situs ini tidak memasang cookie sendiri dan tidak menggunakan layanan analitik. Jika hal ini berubah, kebijakan ini akan diperbarui."
+        ]
+      },
+      {
+        "title": "Iklan dan tautan pihak ketiga",
+        "paragraphs": [
+          "Halaman ini dapat memuat tautan iklan dari mitra periklanan (Adsterra). Tautan diberi label \"Iklan\" dan hanya terbuka ketika Anda mengkliknya. Setelah Anda berpindah ke situs mitra, pengumpulan data di sana diatur oleh kebijakan privasi situs tersebut, bukan oleh kebijakan ini."
+        ]
+      },
+      {
+        "title": "Perubahan kebijakan",
+        "paragraphs": [
+          "Kebijakan ini dapat diperbarui dari waktu ke waktu. Tanggal pembaruan terakhir tercantum di bagian atas halaman ini."
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "metaTitle": "Syarat dan Ketentuan — Jawara Video",
+    "metaDescription": "Syarat dan ketentuan penggunaan situs Jawara Video.",
+    "title": "Syarat dan Ketentuan",
+    "updated": "Terakhir diperbarui: 11 November 2026",
+    "sections": [
+      {
+        "title": "Penggunaan situs",
+        "paragraphs": [
+          "Dengan mengakses situs ini, Anda setuju menggunakannya secara wajar dan sesuai hukum yang berlaku. Anda tidak diperkenankan mengganggu kinerja situs atau mencoba mengaksesnya dengan cara yang tidak sah."
+        ]
+      },
+      {
+        "title": "Isi situs",
+        "paragraphs": [
+          "Isi situs ini bersifat informasi umum dan tidak dimaksudkan sebagai nasihat profesional. Kami berupaya menjaga keakuratan informasi, tetapi tidak menjamin bahwa isinya selalu lengkap atau terbaru."
+        ]
+      },
+      {
+        "title": "Iklan dan tautan eksternal",
+        "paragraphs": [
+          "Tautan iklan dan tautan ke situs lain dikelola pihak ketiga. Kami tidak bertanggung jawab atas isi, layanan, atau kebijakan situs tersebut. Silakan baca ketentuan mereka sebelum menggunakannya."
+        ]
+      },
+      {
+        "title": "Hak kekayaan intelektual",
+        "paragraphs": [
+          "Teks, desain, dan elemen visual pada situs ini dilindungi hak cipta dan tidak boleh disalin atau disebarkan ulang tanpa izin tertulis, kecuali dikutip secara wajar dengan mencantumkan sumber."
+        ]
+      },
+      {
+        "title": "Batasan tanggung jawab",
+        "paragraphs": [
+          "Situs ini disediakan apa adanya. Sejauh diizinkan hukum, kami tidak bertanggung jawab atas kerugian yang timbul dari penggunaan situs ini."
+        ]
+      },
+      {
+        "title": "Perubahan ketentuan",
+        "paragraphs": [
+          "Ketentuan ini dapat diubah sewaktu-waktu. Penggunaan situs setelah perubahan berarti Anda menerima ketentuan yang diperbarui."
+        ]
+      }
+    ]
+  }
+}
