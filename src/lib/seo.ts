@@ -1,60 +1,35 @@
 import type { Metadata } from "next";
-import {
-  LOCALES,
-  OG_LOCALE,
-  languageAlternates,
-  type Locale,
-} from "@/lib/locales";
 import { SITE } from "@/lib/site";
 
-interface BuildMetadataInput {
-  lang: Locale;
-  /** Path tanpa prefix bahasa, mis. "" (beranda) atau "/privacy". */
-  path: string;
+interface PageMetadataInput {
   title: string;
   description: string;
-  ogAlt: string;
+  /** Path kanonis, mis. "/" atau "/privacy". Diselesaikan oleh metadataBase. */
+  path: string;
 }
 
 /**
- * Metadata per halaman. Canonical dan hreflang dihitung per path (bukan di
- * layout) supaya /en/privacy tidak salah menunjuk canonical ke /en.
- * Semua URL relatif di sini diselesaikan oleh metadataBase (domain produksi).
+ * Metadata per halaman. Canonical selalu dihitung dari path halaman itu sendiri
+ * dan diselesaikan terhadap metadataBase (domain produksi), bukan URL preview.
+ * Gambar Open Graph berasal dari src/app/opengraph-image.tsx.
  */
-export function buildMetadata({
-  lang,
-  path,
+export function pageMetadata({
   title,
   description,
-  ogAlt,
-}: BuildMetadataInput): Metadata {
-  const url = `/${lang}${path}`;
-  const image = `/api/og?lang=${lang}`;
-
+  path,
+}: PageMetadataInput): Metadata {
   return {
     title,
     description,
-    alternates: {
-      canonical: url,
-      languages: languageAlternates(path),
-    },
+    alternates: { canonical: path },
     openGraph: {
       type: "website",
-      url,
+      url: path,
       siteName: SITE.name,
       title,
       description,
-      locale: OG_LOCALE[lang],
-      alternateLocale: LOCALES.filter((l) => l !== lang).map(
-        (l) => OG_LOCALE[l],
-      ),
-      images: [{ url: image, width: 1200, height: 630, alt: ogAlt }],
+      locale: SITE.locale,
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [image],
-    },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
