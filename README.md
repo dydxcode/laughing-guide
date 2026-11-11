@@ -37,7 +37,19 @@ Setelah `npm install` pertama, komit file `package-lock.json` agar build Vercel 
 
 ## Environment variables
 
-Tidak ada yang wajib diisi. Lihat `.env.example`. Vercel menyediakan `VERCEL_ENV` secara otomatis.
+Tidak ada yang wajib diisi agar situs berjalan. Lihat `.env.example`.
+
+| Variabel | Fungsi |
+| --- | --- |
+| `NEXT_PUBLIC_ADSTERRA_SMARTLINK_URL` | URL Adsterra Smartlink resmi (HTTPS). Kosong berarti tidak ada iklan yang tampil. Perubahan nilai butuh redeploy. |
+| `VERCEL_ENV` | Disediakan otomatis oleh Vercel. |
+
+## Monetisasi Adsterra Smartlink
+
+- Komponen `src/components/SponsoredLink.tsx` menampilkan satu blok berlabel **Iklan** di atas footer, hanya jika `NEXT_PUBLIC_ADSTERRA_SMARTLINK_URL` terisi dan berupa URL HTTPS yang valid.
+- Tautan terbuka hanya saat pengunjung mengkliknya (tab baru, `rel="sponsored nofollow noopener noreferrer"`). Tidak ada auto-open, redirect paksa, atau script iklan tambahan.
+- Tautan iklan tidak masuk sitemap dan tidak mengubah metadata, canonical, maupun structured data.
+- Status saat ini: **PARTIAL**, menunggu URL resmi dari akun Adsterra dan pengujian di Preview.
 
 ## Struktur folder
 
@@ -53,8 +65,9 @@ src/
     icon.svg             Favicon sementara
     not-found.tsx        Halaman 404
     error.tsx            Halaman error
-  components/            Header (menu mobile), Footer
+  components/            Header (menu mobile), Footer, SponsoredLink
   lib/site.ts            Nama, URL produksi, deskripsi, navigasi
+  lib/ads.ts             Membaca dan memvalidasi URL Smartlink
 ```
 
 ## Konfigurasi SEO
