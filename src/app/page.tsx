@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import SponsoredLink from "@/components/SponsoredLink";
 import { SITE } from "@/lib/site";
 
 const FEATURES = [
@@ -146,6 +147,8 @@ export default function HomePage() {
           </div>
         </section>
       </main>
+
+      <SponsoredLink />
 
       <Footer />
 
