@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Halaman tidak ditemukan",
@@ -13,12 +14,12 @@ export default function NotFound() {
       <p className="mt-3 text-muted">
         Alamat yang Anda buka tidak tersedia atau sudah dipindahkan.
       </p>
-      <a
+      <Link
         href="/"
         className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-brand px-8 font-bold text-paper hover:bg-brand-dark"
       >
         Kembali ke beranda
-      </a>
+      </Link>
     </main>
   );
 }

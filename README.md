@@ -14,7 +14,7 @@ Proyek ini hanya landing page, bukan platform media lengkap (tidak ada CMS, data
 
 ## Menjalankan secara lokal
 
-Butuh Node.js 20 atau lebih baru.
+Butuh Node.js 22.
 
 ```bash
 npm install
