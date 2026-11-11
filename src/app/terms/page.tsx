@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "Ketentuan Penggunaan",
   description:
-    "Ketentuan penggunaan halaman Jawara Video: penggunaan halaman, media sampel, tautan eksternal, dan iklan.",
+    "Ketentuan penggunaan halaman Jawara Video: penggunaan halaman, media, tautan eksternal, dan iklan.",
   path: "/terms",
 });
 
@@ -15,8 +15,8 @@ const SECTIONS = [
     body: "Halaman ini adalah halaman pengenalan Jawara Video. Kamu boleh membaca dan membagikan tautannya. Jangan menggunakan halaman ini untuk tujuan yang melanggar hukum.",
   },
   {
-    heading: "Media sampel dan hak cipta",
-    body: "Gambar dan video sampel berasal dari pihak lain dan ditampilkan atau ditautkan hanya untuk menguji tampilan halaman. Penayangannya di sini bukan pernyataan bahwa hak penggunaannya sudah diverifikasi. Hak atas media tetap dimiliki oleh pemiliknya masing-masing.",
+    heading: "Media dan hak cipta",
+    body: "Gambar dan video di halaman ini dapat berasal dari pihak lain dan ditampilkan atau ditautkan sesuai status hak penggunaan yang tertera pada masing-masing media. Status \"belum diverifikasi\" berarti izin publikasinya belum diperiksa. Hak atas media tetap dimiliki oleh pemiliknya masing-masing.",
   },
   {
     heading: "Tautan eksternal dan iklan",

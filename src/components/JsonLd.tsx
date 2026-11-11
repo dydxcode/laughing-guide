@@ -2,7 +2,7 @@ import { SITE } from "@/lib/site";
 
 /**
  * Structured data hanya untuk fakta yang benar-benar ada: nama dan URL situs.
- * Tidak ada VideoObject, ImageObject, rating, atau review karena media sampel
+ * Tidak ada VideoObject, ImageObject, rating, atau review karena data media
  * belum diverifikasi.
  */
 export default function JsonLd() {

@@ -9,7 +9,7 @@ export const SITE = {
   locale: "id_ID",
   title: "Jawara Video — Platform Koleksi Gambar dan Video",
   description:
-    "Jawara Video adalah platform koleksi gambar dan video. Halaman ini memperkenalkan Jawara Video dan menampilkan sampel awal media.",
+    "Jawara Video adalah platform koleksi gambar dan video. Halaman ini memperkenalkan Jawara Video dan menampilkan pilihan gambar dan video.",
   legalUpdated: "11 November 2026",
 } as const;
 

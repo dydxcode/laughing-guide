@@ -48,7 +48,7 @@ Tidak ada yang wajib. Lihat `.env.example`.
 src/
   app/
     layout.tsx           Root layout, metadata dasar, header dan footer
-    page.tsx             Landing page (satu H1, anchor, sampel media)
+    page.tsx             Landing page (satu H1, anchor, video dan gambar)
     privacy/page.tsx     Kebijakan Privasi
     terms/page.tsx       Ketentuan Penggunaan
     opengraph-image.tsx  Gambar Open Graph (teks saja)
@@ -58,7 +58,7 @@ src/
     error.tsx            Halaman error
     icon.svg             Ikon sementara
   components/            SiteHeader, SiteFooter, YouTubeEmbed, SponsoredLink, JsonLd, LegalDocument
-  lib/                   site.ts (konfigurasi), media.ts (sampel), seo.ts, ads.ts
+  lib/                   site.ts (konfigurasi), media.ts (URL video/gambar), seo.ts, ads.ts
 ```
 
 ## Bahasa
@@ -71,15 +71,16 @@ Hanya Bahasa Indonesia. Versi Bahasa Inggris tidak disediakan, jadi tidak ada hr
 - Preview dan Development mendapat `<meta name="robots" content="noindex, nofollow">`. Production mendapat `index, follow`.
 - `robots.txt` tidak memblokir apa pun supaya noindex pada Preview bisa dibaca. Lindungi Preview dengan Vercel Deployment Protection.
 - Sitemap hanya memuat `/`, `/privacy`, dan `/terms`.
-- Structured data: `WebSite`, `Organization`, dan `WebPage` (nama dan URL). Tidak ada `VideoObject` atau `ImageObject` karena media sampel belum diverifikasi.
+- Structured data: `WebSite`, `Organization`, dan `WebPage` (nama dan URL). Tidak ada `VideoObject` atau `ImageObject` karena data media belum diverifikasi.
 
-## Media sampel
+## Media (video dan gambar)
 
-Data ada di `src/lib/media.ts`. Semua sampel berstatus **belum diverifikasi** (judul, deskripsi, hak penggunaan, izin embed).
+Semua URL media diubah di **satu file**: `src/lib/media.ts`. Teks lain di halaman tidak perlu disentuh.
 
-- Video YouTube: embed resmi `youtube-nocookie.com`, baru dimuat setelah tombol ditekan, tanpa autoplay. Tautan ke sumber asli selalu tersedia.
-- Gambar ImageDock: URL kemungkinan halaman media, bukan berkas gambar. Gambar belum ditampilkan, hanya tautan ke sumber asli.
-- Label netral ("Sampel video N", "Sampel gambar N"). Jangan menambahkan judul, alt text, atau metadata sebelum diverifikasi.
+- Video: isi `url` dengan tautan YouTube. Embed memakai `youtube-nocookie.com`, baru dimuat setelah tombol ditekan, tanpa autoplay.
+- Gambar: isi `url` (tautan sumber). Pratinjau baru tampil jika `imageUrl` (berkas gambar langsung) dan `alt` (deskripsi akurat) sama-sama diisi.
+- `rights`: status hak penggunaan, bawaan "belum diverifikasi". Ubah hanya setelah izin benar-benar diperiksa.
+- Label otomatis ("Video N", "Gambar N"). Jangan mengarang judul, alt text, atau metadata. Tidak ada `VideoObject`/`ImageObject` sebelum datanya terverifikasi.
 
 ## Adsterra Smartlink
 

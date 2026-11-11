@@ -6,6 +6,7 @@ interface Props {
   videoId: string;
   label: string;
   sourceUrl: string;
+  rights: string;
 }
 
 /**
@@ -14,7 +15,12 @@ interface Props {
  * autoplay, dan wadah 16:9 yang ukurannya terkunci mencegah layout shift.
  * Tautan ke sumber asli selalu tersedia bila embed tidak diizinkan.
  */
-export default function YouTubeEmbed({ videoId, label, sourceUrl }: Props) {
+export default function YouTubeEmbed({
+  videoId,
+  label,
+  sourceUrl,
+  rights,
+}: Props) {
   const [loaded, setLoaded] = useState(false);
 
   return (
@@ -47,7 +53,7 @@ export default function YouTubeEmbed({ videoId, label, sourceUrl }: Props) {
         )}
       </div>
       <p className="mt-3 text-sm text-muted">
-        Hak penggunaan: belum diverifikasi.{" "}
+        Hak penggunaan: {rights}.{" "}
         <a
           href={sourceUrl}
           target="_blank"
