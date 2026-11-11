@@ -25,7 +25,7 @@ export default function YouTubeEmbed({
 
   return (
     <div>
-      <div className="aspect-video w-full overflow-hidden rounded-xl border border-line bg-ink">
+      <div className="flat-shadow aspect-video w-full overflow-hidden rounded-xl border-2 border-ink bg-ink">
         {loaded ? (
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${videoId}`}
@@ -42,7 +42,7 @@ export default function YouTubeEmbed({
               type="button"
               onClick={() => setLoaded(true)}
               aria-label={`Muat ${label} dari YouTube`}
-              className="inline-flex h-11 items-center justify-center rounded-full bg-brand px-6 text-sm font-bold text-paper transition-colors hover:bg-brand-dark"
+              className="flat-btn inline-flex h-11 items-center justify-center rounded-full bg-brand px-6 text-sm font-bold text-paper hover:bg-brand-dark"
             >
               Muat video dari YouTube
             </button>

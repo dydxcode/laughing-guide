@@ -57,7 +57,7 @@ src/
     not-found.tsx        404
     error.tsx            Halaman error
     icon.svg             Ikon sementara
-  components/            SiteHeader, SiteFooter, YouTubeEmbed, SponsoredLink, JsonLd, LegalDocument
+  components/            SiteHeader, SiteFooter, YouTubeEmbed, SponsoredLink, JsonLd, LegalDocument, HeroIllustration, Icons
   lib/                   site.ts (konfigurasi), media.ts (URL video/gambar), seo.ts, ads.ts
 ```
 
@@ -81,6 +81,13 @@ Semua URL media diubah di **satu file**: `src/lib/media.ts`. Teks lain di halama
 - Gambar: isi `url` (tautan sumber). Pratinjau baru tampil jika `imageUrl` (berkas gambar langsung) dan `alt` (deskripsi akurat) sama-sama diisi.
 - `rights`: status hak penggunaan, bawaan "belum diverifikasi". Ubah hanya setelah izin benar-benar diperiksa.
 - Label otomatis ("Video N", "Gambar N"). Jangan mengarang judul, alt text, atau metadata. Tidak ada `VideoObject`/`ImageObject` sebelum datanya terverifikasi.
+
+## Desain 2D (flat)
+
+- Gaya: blok warna datar, garis tebal `#111111`, bayangan keras tanpa blur. Kelasnya (`.flat-card`, `.flat-btn`, `.flat-shadow`) ada di `src/app/globals.css`, warna di token `@theme`.
+- Ilustrasi hero (`HeroIllustration.tsx`) dan ikon section (`Icons.tsx`) berupa inline SVG: tanpa permintaan jaringan, ukuran terkunci (tanpa layout shift), dekoratif (`aria-hidden`), dan bukan kontrol yang bisa diklik.
+- Tidak ada animasi, sehingga preferensi reduced motion otomatis terpenuhi.
+- Ilustrasi sengaja berbeda dari logo pihak lain. Jangan meniru logo atau karakter milik orang lain.
 
 ## Adsterra Smartlink
 

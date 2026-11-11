@@ -32,11 +32,15 @@ const VIDEO_SOURCES: readonly VideoSource[] = [
   { url: "https://youtu.be/uGz7TqWUru8" },
 ];
 
+// Gambar milik pemilik situs (dikonfirmasi pemilik), di-hosting pada pihak ketiga.
+// Pratinjau tampil setelah `imageUrl` (berkas gambar langsung) dan `alt` diisi.
+const OWNED = "milik pemilik situs";
+
 const IMAGE_SOURCES: readonly ImageSource[] = [
-  { url: "https://imagedock.io/i/OSo9ZovK" },
-  { url: "https://imagedock.io/i/6YnIpQTC" },
-  { url: "https://imagedock.io/i/E9ddyYtV" },
-  { url: "https://imagedock.io/i/KhRJcVf3" },
+  { url: "https://imagedock.io/i/OSo9ZovK", rights: OWNED },
+  { url: "https://imagedock.io/i/6YnIpQTC", rights: OWNED },
+  { url: "https://imagedock.io/i/E9ddyYtV", rights: OWNED },
+  { url: "https://imagedock.io/i/KhRJcVf3", rights: OWNED },
 ];
 
 export interface VideoItem {
