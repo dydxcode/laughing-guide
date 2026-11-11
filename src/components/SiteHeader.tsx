@@ -1,37 +1,35 @@
 import Link from "next/link";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
-import type { Dictionary } from "@/lib/i18n";
-import type { Locale } from "@/lib/locales";
 import { SITE } from "@/lib/site";
 
-interface SiteHeaderProps {
-  lang: Locale;
-  path: string;
-  t: Dictionary["common"];
-}
+const LINKS = [
+  { href: "/#tentang", label: "Tentang" },
+  { href: "/#video", label: "Video" },
+  { href: "/#gambar", label: "Gambar" },
+] as const;
 
-export default function SiteHeader({ lang, path, t }: SiteHeaderProps) {
+export default function SiteHeader() {
   return (
-    <header className="border-b border-white/10 bg-slate-950 text-white">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+    <header className="sticky top-0 z-40 border-b border-line bg-paper/95 backdrop-blur">
+      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-3 sm:px-6">
         <Link
-          href={`/${lang}`}
-          className="text-xl font-extrabold tracking-tight text-white"
+          href="/"
+          className="text-xl font-extrabold tracking-tight text-brand"
         >
           {SITE.name}
         </Link>
-
-        <nav
-          aria-label={t.headerNavLabel}
-          className="flex items-center gap-5 sm:gap-8"
-        >
-          <Link
-            href={`/${lang}#panduan`}
-            className="text-sm font-semibold text-white hover:underline"
-          >
-            {t.navGuide}
-          </Link>
-          <LanguageSwitcher lang={lang} path={path} label={t.languageLabel} />
+        <nav aria-label="Navigasi utama">
+          <ul className="flex items-center gap-5">
+            {LINKS.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="inline-flex min-h-11 items-center text-sm font-semibold text-ink hover:text-brand"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
       </div>
     </header>

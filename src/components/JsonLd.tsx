@@ -1,32 +1,34 @@
-import type { Locale } from "@/lib/locales";
 import { SITE } from "@/lib/site";
 
 /**
- * Structured data yang hanya memuat fakta nyata: nama dan URL situs.
- * Tidak ada VideoObject karena halaman ini tidak memuat video.
+ * Structured data hanya untuk fakta yang benar-benar ada: nama dan URL situs.
+ * Tidak ada VideoObject, ImageObject, rating, atau review karena media sampel
+ * belum diverifikasi.
  */
-export default function JsonLd({ lang }: { lang: Locale }) {
-  const data = {
+export default function JsonLd() {
+  const home = `${SITE.url}/`;
+  const graph = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "WebSite",
         "@id": `${SITE.url}/#website`,
-        url: SITE.url,
+        url: home,
         name: SITE.name,
-        inLanguage: ["id", "en"],
+        inLanguage: "id-ID",
       },
       {
         "@type": "Organization",
         "@id": `${SITE.url}/#organization`,
         name: SITE.name,
-        url: SITE.url,
+        url: home,
       },
       {
         "@type": "WebPage",
-        "@id": `${SITE.url}/${lang}#webpage`,
-        url: `${SITE.url}/${lang}`,
-        inLanguage: lang,
+        "@id": `${SITE.url}/#webpage`,
+        url: home,
+        name: SITE.title,
+        inLanguage: "id-ID",
         isPartOf: { "@id": `${SITE.url}/#website` },
       },
     ],
@@ -36,7 +38,7 @@ export default function JsonLd({ lang }: { lang: Locale }) {
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(data).replace(/</g, "\\u003c"),
+        __html: JSON.stringify(graph).replace(/</g, "\\u003c"),
       }}
     />
   );
