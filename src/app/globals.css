@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/*
+ * Desain 2D flat: blok warna datar, bentuk geometri, tanpa bayangan, tanpa
+ * gradien, tanpa garis tepi tebal. Kedalaman tidak dipakai sama sekali.
+ */
 @theme {
   --color-brand: #e60023;
   --color-brand-dark: #b8001c;
@@ -8,7 +12,7 @@
   --color-muted: #5f5f5f;
   --color-line: #e6e6e6;
   --color-soft: #fafafa;
-  --color-tint: #fff1f3;
+  --color-tint: #ffe4e9;
 }
 
 @theme inline {
@@ -27,40 +31,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Gaya flat 2D: blok warna datar, garis tebal, bayangan keras tanpa blur. */
-.flat-shadow {
-  box-shadow: 4px 4px 0 0 var(--color-ink);
-}
-
-.flat-shadow-sm {
-  box-shadow: 3px 3px 0 0 var(--color-ink);
-}
-
-.flat-card {
-  border: 2px solid var(--color-ink);
-  border-radius: 1rem;
-  background: var(--color-paper);
-  box-shadow: 4px 4px 0 0 var(--color-ink);
-}
-
-.flat-btn {
-  border: 2px solid var(--color-ink);
-  box-shadow: 3px 3px 0 0 var(--color-ink);
-  transition:
-    transform 0.1s,
-    box-shadow 0.1s,
-    background-color 0.1s,
-    color 0.1s;
-}
-
-.flat-btn:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0 0 var(--color-ink);
-}
-
 :focus-visible {
   outline: 3px solid var(--color-ink);
   outline-offset: 2px;
+}
+
+/* Di latar gelap atau merah, fokus keyboard memakai garis putih. */
+.on-dark :focus-visible {
+  outline-color: var(--color-paper);
 }
 
 @media (prefers-reduced-motion: reduce) {
