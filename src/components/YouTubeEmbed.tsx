@@ -14,6 +14,7 @@ interface Props {
  * Sebelum itu tidak ada permintaan ke YouTube (performa dan privasi), tanpa
  * autoplay, dan wadah 16:9 yang ukurannya terkunci mencegah layout shift.
  * Tautan ke sumber asli selalu tersedia bila embed tidak diizinkan.
+ * Dirancang untuk latar gelap (section Video).
  */
 export default function YouTubeEmbed({
   videoId,
@@ -25,7 +26,7 @@ export default function YouTubeEmbed({
 
   return (
     <div>
-      <div className="flat-shadow aspect-video w-full overflow-hidden rounded-xl border-2 border-ink bg-ink">
+      <div className="aspect-video w-full overflow-hidden rounded-2xl bg-white/10">
         {loaded ? (
           <iframe
             src={`https://www.youtube-nocookie.com/embed/${videoId}`}
@@ -42,23 +43,23 @@ export default function YouTubeEmbed({
               type="button"
               onClick={() => setLoaded(true)}
               aria-label={`Muat ${label} dari YouTube`}
-              className="flat-btn inline-flex h-11 items-center justify-center rounded-full bg-brand px-6 text-sm font-bold text-paper hover:bg-brand-dark"
+              className="inline-flex h-11 items-center justify-center rounded-full bg-brand px-6 text-sm font-bold text-paper transition-colors hover:bg-brand-dark"
             >
               Muat video dari YouTube
             </button>
-            <p className="text-xs text-white/80">
+            <p className="text-xs text-paper/80">
               Video baru dimuat setelah tombol ditekan.
             </p>
           </div>
         )}
       </div>
-      <p className="mt-3 text-sm text-muted">
+      <p className="mt-3 text-sm text-paper/80">
         Hak penggunaan: {rights}.{" "}
         <a
           href={sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-semibold text-ink underline hover:text-brand"
+          className="font-semibold text-paper underline underline-offset-4 hover:text-tint"
         >
           Buka di YouTube
           <span className="sr-only"> (membuka tab baru)</span>

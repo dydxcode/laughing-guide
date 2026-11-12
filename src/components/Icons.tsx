@@ -61,12 +61,12 @@ export function ShieldIcon() {
   );
 }
 
-/** Kotak ikon flat dengan garis tebal dan bayangan keras. */
+/** Lingkaran merah datar berisi ikon putih. */
 export function IconBadge({ children }: { children: ReactNode }) {
   return (
     <span
       aria-hidden="true"
-      className="flat-shadow-sm inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2 border-ink bg-paper text-brand"
+      className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand text-paper"
     >
       {children}
     </span>

@@ -50,6 +50,7 @@ src/
     layout.tsx           Root layout, metadata dasar, header dan footer
     page.tsx             Landing page (satu H1, anchor, video dan gambar)
     privacy/page.tsx     Kebijakan Privasi
+    sitemap/page.tsx     Sitemap untuk pengunjung
     terms/page.tsx       Ketentuan Penggunaan
     opengraph-image.tsx  Gambar Open Graph (teks saja)
     robots.ts            /robots.txt
@@ -57,7 +58,7 @@ src/
     not-found.tsx        404
     error.tsx            Halaman error
     icon.svg             Ikon sementara
-  components/            SiteHeader, SiteFooter, YouTubeEmbed, SponsoredLink, JsonLd, LegalDocument, HeroIllustration, Icons
+  components/            SiteHeader, SiteFooter, YouTubeEmbed, SponsoredLink, JsonLd, LegalDocument, HeroIllustration, AboutIllustration, Spots, Shapes, Icons
   lib/                   site.ts (konfigurasi), media.ts (URL video/gambar), seo.ts, ads.ts
 ```
 
@@ -82,12 +83,19 @@ Semua URL media diubah di **satu file**: `src/lib/media.ts`. Teks lain di halama
 - `rights`: status hak penggunaan, bawaan "belum diverifikasi". Ubah hanya setelah izin benar-benar diperiksa.
 - Label otomatis ("Video N", "Gambar N"). Jangan mengarang judul, alt text, atau metadata. Tidak ada `VideoObject`/`ImageObject` sebelum datanya terverifikasi.
 
-## Desain 2D (flat)
+## Desain 2D (flat murni)
 
-- Gaya: blok warna datar, garis tebal `#111111`, bayangan keras tanpa blur. Kelasnya (`.flat-card`, `.flat-btn`, `.flat-shadow`) ada di `src/app/globals.css`, warna di token `@theme`.
-- Ilustrasi hero (`HeroIllustration.tsx`) dan ikon section (`Icons.tsx`) berupa inline SVG: tanpa permintaan jaringan, ukuran terkunci (tanpa layout shift), dekoratif (`aria-hidden`), dan bukan kontrol yang bisa diklik.
-- Tidak ada animasi, sehingga preferensi reduced motion otomatis terpenuhi.
-- Ilustrasi sengaja berbeda dari logo pihak lain. Jangan meniru logo atau karakter milik orang lain.
+- Gaya: blok warna datar dan bentuk geometri. Tidak ada bayangan, gradien, atau garis tepi tebal, jadi tidak ada kesan kedalaman.
+- Palet (token `@theme` di `src/app/globals.css`): `brand` #E60023, `brand-dark` #B8001C, `ink` #111111, `paper` #FFFFFF, `tint` #FFE4E9.
+- Ritme warna antar section: hero (tint) → Tentang (putih) → Video (gelap) → Gambar (putih) → Hak penggunaan (tint) → footer (merah). Pembatasnya bukit datar di hero dan tepi bergelombang di dasar tiap section (`Shapes.tsx`).
+- Ilustrasi (`HeroIllustration`, `AboutIllustration`, `Spots`) dan ikon (`Icons`) berupa inline SVG: tanpa permintaan jaringan, ukuran terkunci (tanpa layout shift), dekoratif (`aria-hidden`), dan bukan kontrol yang bisa diklik.
+- Tidak ada animasi, sehingga preferensi reduced motion otomatis terpenuhi. Hover hanya mengubah warna.
+- Bentuk sengaja orisinal, bukan logo atau karakter pihak lain.
+- Catatan teknis: CSS tanpa layer menang atas utilitas Tailwind, jadi jangan menambah kelas CSS kustom yang mengatur warna latar.
+
+## Halaman Sitemap
+
+`/sitemap` adalah daftar halaman untuk pengunjung (tertaut di footer) dan memuat tautan ke `/sitemap.xml` untuk mesin pencari. Halaman ini juga masuk `sitemap.xml`.
 
 ## Adsterra Smartlink
 

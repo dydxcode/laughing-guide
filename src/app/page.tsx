@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AboutIllustration from "@/components/AboutIllustration";
 import HeroIllustration from "@/components/HeroIllustration";
 import {
   IconBadge,
@@ -8,7 +9,14 @@ import {
   VideoIcon,
 } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
+import { Hills, Wave } from "@/components/Shapes";
 import SponsoredLink from "@/components/SponsoredLink";
+import {
+  ImagePlaceholderArt,
+  ImageSpot,
+  RightsSpot,
+  VideoSpot,
+} from "@/components/Spots";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { IMAGES, VIDEOS } from "@/lib/media";
 import { pageMetadata } from "@/lib/seo";
@@ -39,17 +47,42 @@ const STEPS = [
   },
 ] as const;
 
-function SectionHeading({
+/** Tepi bergelombang di dasar section, berwarna section berikutnya. */
+const WAVE_CLASS =
+  "pointer-events-none absolute inset-x-0 -bottom-px block h-6 w-full sm:h-10";
+
+function SectionIntro({
+  tone,
   icon,
+  title,
+  spot,
   children,
 }: {
+  tone: "light" | "dark";
   icon: React.ReactNode;
+  title: string;
+  spot: React.ReactNode;
   children: React.ReactNode;
 }) {
+  const dark = tone === "dark";
   return (
-    <div className="flex items-center gap-4">
-      <IconBadge>{icon}</IconBadge>
-      <h2 className="text-3xl font-extrabold tracking-tight">{children}</h2>
+    <div className="grid items-center gap-8 md:grid-cols-[1fr_280px]">
+      <div>
+        <div className="flex items-center gap-4">
+          <IconBadge>{icon}</IconBadge>
+          <h2
+            className={`text-3xl font-extrabold tracking-tight ${dark ? "text-paper" : "text-ink"}`}
+          >
+            {title}
+          </h2>
+        </div>
+        <div
+          className={`mt-6 max-w-3xl space-y-4 leading-relaxed ${dark ? "text-paper/80" : "text-muted"}`}
+        >
+          {children}
+        </div>
+      </div>
+      <div className="hidden justify-self-center md:block">{spot}</div>
     </div>
   );
 }
@@ -58,13 +91,13 @@ export default function HomePage() {
   return (
     <>
       <main id="konten">
-        <section id="beranda" className="bg-paper">
-          <div className="mx-auto grid max-w-5xl items-center gap-10 px-4 py-16 sm:px-6 sm:py-24 md:grid-cols-2">
+        <section id="beranda" className="relative overflow-hidden bg-tint">
+          <div className="mx-auto grid max-w-5xl items-center gap-10 px-4 pb-32 pt-12 sm:px-6 sm:pb-40 sm:pt-16 md:grid-cols-2">
             <div>
-              <p className="text-sm font-bold uppercase tracking-widest text-brand">
+              <p className="inline-block rounded-full bg-ink px-3 py-1 text-xs font-bold uppercase tracking-widest text-paper">
                 Platform koleksi gambar dan video
               </p>
-              <h1 className="mt-4 text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+              <h1 className="mt-5 text-4xl font-extrabold leading-tight tracking-tight text-ink sm:text-5xl">
                 Jawara Video: platform koleksi gambar dan video
               </h1>
               <p className="mt-6 text-lg leading-relaxed text-muted">
@@ -75,13 +108,13 @@ export default function HomePage() {
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <a
                   href="#video"
-                  className="flat-btn inline-flex h-12 items-center justify-center rounded-full bg-brand px-8 text-base font-bold text-paper hover:bg-brand-dark"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-brand px-8 text-base font-bold text-paper transition-colors hover:bg-brand-dark"
                 >
                   Lihat video dan gambar
                 </a>
                 <a
                   href="#tentang"
-                  className="flat-btn inline-flex h-12 items-center justify-center rounded-full bg-paper px-8 text-base font-bold text-ink hover:bg-ink hover:text-paper"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-ink px-8 text-base font-bold text-paper transition-colors hover:bg-brand"
                 >
                   Tentang Jawara Video
                 </a>
@@ -91,35 +124,42 @@ export default function HomePage() {
               <HeroIllustration />
             </div>
           </div>
+          <Hills />
         </section>
 
-        <section id="tentang" className="border-t-2 border-ink bg-tint">
-          <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
-            <SectionHeading icon={<InfoIcon />}>
-              Tentang Jawara Video
-            </SectionHeading>
-            <p className="mt-6 max-w-3xl leading-relaxed text-muted">
-              Jawara Video adalah platform koleksi gambar dan video yang
-              ditujukan bagi pengguna di Indonesia dan internasional.
-            </p>
-            <p className="mt-4 max-w-3xl leading-relaxed text-muted">
-              Halaman ini dibuat sebagai halaman pengenalan. Penjelajahan
-              koleksi, pencarian, dan akun pengguna tidak tersedia di halaman
-              ini.
-            </p>
-            <h3 className="mt-10 text-xl font-bold">
+        <section id="tentang" className="relative bg-paper">
+          <div className="mx-auto max-w-5xl px-4 pb-24 pt-16 sm:px-6 sm:pb-28 sm:pt-20">
+            <SectionIntro
+              tone="light"
+              icon={<InfoIcon />}
+              title="Tentang Jawara Video"
+              spot={<AboutIllustration />}
+            >
+              <p>
+                Jawara Video adalah platform koleksi gambar dan video yang
+                ditujukan bagi pengguna di Indonesia dan internasional.
+              </p>
+              <p>
+                Halaman ini dibuat sebagai halaman pengenalan. Penjelajahan
+                koleksi, pencarian, dan akun pengguna tidak tersedia di halaman
+                ini.
+              </p>
+            </SectionIntro>
+            <h3 className="mt-12 text-xl font-bold text-ink">
               Cara menjelajahi untuk saat ini
             </h3>
             <ol className="mt-6 grid gap-6 md:grid-cols-3">
               {STEPS.map((step, index) => (
-                <li key={step.title} className="flat-card p-5">
+                <li key={step.title} className="rounded-2xl bg-tint p-5">
                   <span
                     aria-hidden="true"
-                    className="flat-shadow-sm inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-ink bg-brand text-base font-extrabold text-paper"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand text-base font-extrabold text-paper"
                   >
                     {index + 1}
                   </span>
-                  <h4 className="mt-4 text-lg font-bold">{step.title}</h4>
+                  <h4 className="mt-4 text-lg font-bold text-ink">
+                    {step.title}
+                  </h4>
                   <p className="mt-1 text-sm leading-relaxed text-muted">
                     {step.text}
                   </p>
@@ -127,20 +167,29 @@ export default function HomePage() {
               ))}
             </ol>
           </div>
+          <Wave className={`${WAVE_CLASS} text-ink`} />
         </section>
 
         {VIDEOS.length > 0 && (
-          <section id="video" className="border-t-2 border-ink bg-paper">
-            <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
-              <SectionHeading icon={<VideoIcon />}>Video</SectionHeading>
-              <p className="mt-6 max-w-3xl leading-relaxed text-muted">
-                Pilihan video dari YouTube. Setiap video menampilkan status hak
-                penggunaannya sendiri.
-              </p>
-              <ul className="mt-10 grid gap-8 sm:grid-cols-2">
+          <section id="video" className="on-dark relative bg-ink">
+            <div className="mx-auto max-w-5xl px-4 pb-24 pt-16 sm:px-6 sm:pb-28 sm:pt-20">
+              <SectionIntro
+                tone="dark"
+                icon={<VideoIcon />}
+                title="Video"
+                spot={<VideoSpot />}
+              >
+                <p>
+                  Pilihan video dari YouTube. Setiap video menampilkan status
+                  hak penggunaannya sendiri.
+                </p>
+              </SectionIntro>
+              <ul className="mt-12 grid gap-8 sm:grid-cols-2">
                 {VIDEOS.map((video) => (
                   <li key={video.id}>
-                    <h3 className="mb-3 text-lg font-bold">{video.label}</h3>
+                    <h3 className="mb-3 inline-block rounded-full bg-brand px-3 py-1 text-sm font-bold text-paper">
+                      {video.label}
+                    </h3>
                     <YouTubeEmbed
                       videoId={video.id}
                       label={video.label}
@@ -151,36 +200,48 @@ export default function HomePage() {
                 ))}
               </ul>
             </div>
+            <Wave className={`${WAVE_CLASS} text-paper`} />
           </section>
         )}
 
         {IMAGES.length > 0 && (
-          <section id="gambar" className="border-t-2 border-ink bg-tint">
-            <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
-              <SectionHeading icon={<ImageIcon />}>Gambar</SectionHeading>
-              <p className="mt-6 max-w-3xl leading-relaxed text-muted">
-                Pilihan gambar. Setiap gambar menampilkan status hak
-                penggunaannya dan tautan ke sumbernya. Pratinjau hanya
-                ditampilkan bila tersedia.
-              </p>
-              <ul className="mt-10 grid gap-8 sm:grid-cols-2">
+          <section id="gambar" className="relative bg-paper">
+            <div className="mx-auto max-w-5xl px-4 pb-24 pt-16 sm:px-6 sm:pb-28 sm:pt-20">
+              <SectionIntro
+                tone="light"
+                icon={<ImageIcon />}
+                title="Gambar"
+                spot={<ImageSpot />}
+              >
+                <p>
+                  Pilihan gambar. Setiap gambar menampilkan status hak
+                  penggunaannya dan tautan ke sumbernya. Pratinjau hanya
+                  ditampilkan bila tersedia.
+                </p>
+              </SectionIntro>
+              <ul className="mt-12 grid gap-8 sm:grid-cols-2">
                 {IMAGES.map((image) => (
                   <li key={image.sourceUrl}>
-                    <h3 className="mb-3 text-lg font-bold">{image.label}</h3>
+                    <h3 className="mb-3 inline-block rounded-full bg-ink px-3 py-1 text-sm font-bold text-paper">
+                      {image.label}
+                    </h3>
                     {image.imageUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={image.imageUrl}
                         alt={image.alt}
-                        width={800}
-                        height={600}
+                        width={1600}
+                        height={900}
                         loading="lazy"
                         decoding="async"
-                        className="flat-shadow aspect-[4/3] w-full rounded-xl border-2 border-ink bg-paper object-cover"
+                        className="aspect-video w-full rounded-2xl bg-tint object-cover"
                       />
                     ) : (
-                      <div className="flat-shadow flex aspect-[4/3] w-full items-center justify-center rounded-xl border-2 border-ink bg-paper p-4 text-center text-sm text-muted">
-                        Pratinjau belum tersedia
+                      <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-tint">
+                        <ImagePlaceholderArt />
+                        <p className="absolute bottom-3 left-3 rounded-full bg-paper px-3 py-1 text-xs font-bold text-ink">
+                          Pratinjau belum tersedia
+                        </p>
                       </div>
                     )}
                     <p className="mt-3 text-sm text-muted">
@@ -189,7 +250,7 @@ export default function HomePage() {
                         href={image.sourceUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-semibold text-ink underline hover:text-brand"
+                        className="font-semibold text-ink underline underline-offset-4 hover:text-brand"
                       >
                         Buka sumber gambar
                         <span className="sr-only"> (membuka tab baru)</span>
@@ -199,24 +260,32 @@ export default function HomePage() {
                 ))}
               </ul>
             </div>
+            <Wave className={`${WAVE_CLASS} text-tint`} />
           </section>
         )}
 
-        <section id="hak" className="border-t-2 border-ink bg-paper">
-          <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 sm:py-20">
-            <SectionHeading icon={<ShieldIcon />}>
-              Hak penggunaan media
-            </SectionHeading>
-            <p className="mt-6 max-w-3xl leading-relaxed text-muted">
-              Setiap media di halaman ini menampilkan status hak penggunaannya.
-              Status &quot;belum diverifikasi&quot; berarti hak penggunaan atau
-              izin publikasinya belum diperiksa.
-            </p>
+        <section id="hak" className="relative bg-tint">
+          <div className="mx-auto max-w-5xl px-4 pb-24 pt-16 sm:px-6 sm:pb-28 sm:pt-20">
+            <SectionIntro
+              tone="light"
+              icon={<ShieldIcon />}
+              title="Hak penggunaan media"
+              spot={<RightsSpot />}
+            >
+              <p>
+                Setiap media di halaman ini menampilkan status hak
+                penggunaannya. Status &quot;belum diverifikasi&quot; berarti hak
+                penggunaan atau izin publikasinya belum diperiksa.
+              </p>
+            </SectionIntro>
+            <div className="mt-10">
+              <SponsoredLink />
+            </div>
           </div>
+          <Wave className={`${WAVE_CLASS} text-brand`} />
         </section>
       </main>
 
-      <SponsoredLink />
       <JsonLd />
     </>
   );

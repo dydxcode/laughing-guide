@@ -9,12 +9,16 @@ const LINKS = [
 
 export default function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b-2 border-ink bg-paper/95 backdrop-blur">
+    <header className="on-dark sticky top-0 z-40 bg-ink text-paper">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-3 sm:px-6">
         <Link
           href="/"
-          className="text-xl font-extrabold tracking-tight text-brand"
+          className="inline-flex min-h-11 items-center gap-2 text-xl font-extrabold tracking-tight"
         >
+          <span
+            aria-hidden="true"
+            className="inline-block h-4 w-4 rounded-full bg-brand"
+          />
           {SITE.name}
         </Link>
         <nav aria-label="Navigasi utama">
@@ -23,7 +27,7 @@ export default function SiteHeader() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="inline-flex min-h-11 items-center text-sm font-semibold text-ink hover:text-brand"
+                  className="inline-flex min-h-11 items-center text-sm font-semibold hover:text-tint"
                 >
                   {link.label}
                 </Link>
